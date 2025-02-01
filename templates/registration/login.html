@@ -1,0 +1,13 @@
+<!-- chat/templates/registration/login.html -->
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2 class="login-heading">Login</h2>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="login-button">Login</button><br>
+    Didn't craeted any account yet?<a class="menu-con" href="{% url 'signup' %}">signup</a>
+  </form>
+{% endblock %}

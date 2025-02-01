@@ -1,0 +1,16 @@
+<!-- change_profile_pic.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Profile Picture</title>
+</head>
+<body>
+    <h1>Change Profile Picture</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

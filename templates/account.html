@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D-Chat | Account</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'account.css'%}" />
+</head>
+
+<body>
+    <div class="box1">
+        <div class="heading">
+            <span>
+                <a style="text-decoration: none;" href="/">
+                    <button class="change-button">Back</button>
+                </a>
+            </span>
+            <div class="acc">Account</div>
+        </div>
+        <div class="content">
+            <div class="avatar">
+                <img class="avatar-img" src="{%static 'avatar2.1.png'%}" />
+                <br /><a ><button class="change-button">Change Profile Photo</button></a>
+            </div>
+            <div class="name">
+                <span class="name-user">USERNAME</span> <br />{{user.username}}
+            </div>
+        </div>
+        <div class="options">
+            <div class="option-div">Setting</div>
+            <div class="option-div">Security</div>
+            <div class="option-div">About us</div>
+            <div class="option-div">Contact Us</div>
+        </div>
+</body>
+
+</html>

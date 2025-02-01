@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Chat</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index1.css' %}">
+    <script>
+        function shhi() {
+            var x = document.getElementById("dropdown");
+            var y = document.getElementById("dropdown2");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+                y.style.display = "none";
+            }
+        }
+
+        function settingshow() {
+            var x = document.getElementById("dropdown");
+            var y = document.getElementById("dropdown2");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+                y.style.display = "block";
+            } else {
+                x.style.display = "block";
+                y.style.display = "none";
+            }
+        }
+        /*function accountshow(){
+            var x=document.getElementById("dropdown");
+            var y=document.getElementById("dropdown3");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+                y.style.display = "block";
+            } else {
+                x.style.display = "block";
+                y.style.display = "none";
+            }
+        }*/
+        function accountshow(){
+            window.location = `/account/`;
+        }
+        function message(username)
+        {
+            window.location = `/chat/${username}/`;
+
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var elements = document.querySelectorAll(".mess-count");
+            elements.forEach(function(element) {
+                var value = element.innerText;
+                if (value === "0") {
+                    element.style.display = "none";
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header1">
+        <nav class="nav-bar">
+            <img class="logo" src="{%static 'logo.2.1.1.png'%}"/>
+            <h1>D-Chat</h1>
+            <span class="menu" onclick="shhi()">MENU</span>
+        </nav>
+
+
+    </div>
+    <div class="dropdown" id="dropdown">
+        <span class="menu-con" onclick="accountshow()">Account</span>
+        <a class="menu-con" onclick="settingshow()">Setting</a>
+    </div>
+    <div class="dropdown" id="dropdown2">
+        <a class="menu-con-back" onclick="settingshow()">Back</a>
+        <a class="menu-con" href="logout">Logout</a>
+        <a class="menu-con" href="{% url 'login' %}">login</a>
+        <a class="menu-con" href="{% url 'signup' %}">signup</a>
+        <a class="menu-con">Change Details</a>
+    </div>
+    <div class="dropdown" id="dropdown3">
+        <a class="menu-con" onclick="accountshow()">Back</a>
+        <a class="menu-con"> {{ user.username }} </a>
+    </div>
+
+    <div class="span2">
+        <div class="span2-con">Chats</div>
+        <div class="span2-con">Updates</div>
+    </div>
+
+
+    <br><br><br><br><br><br><br>
+    {% for user in users %}
+    <div class="message" onclick="message('{{ user.username }}')">
+        <div class="mess-img">
+            <img class="profile-img" src="{% static 'avatar2.1.png' %}" alt="Profile Image"/>
+        </div>
+        <div class="mess-name">{{ user.username }}</div>
+        <div class="mess-count" id="noti">0</div>
+    </div>
+    {% endfor %}
+</body> 
+</html>

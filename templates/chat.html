@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Chat | Chat</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chat.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const roomName = '{{ room_name }}';
+            const username = '{{ request.user.username }}';
+            const chatSocket = new WebSocket(
+                'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+            );
+
+            chatSocket.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                const sender = data.sender === username ? 'user1' : 'user2';
+                addMessage(data.message, sender);
+            };
+
+            chatSocket.onclose = function(e) {
+                console.error('Chat socket closed unexpectedly');
+            };
+
+            const form = document.querySelector('form.text');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const textarea = document.querySelector('textarea');
+                const message = textarea.value.trim();
+                if (message) {
+                    chatSocket.send(JSON.stringify({
+                        'message': message,
+                        'sender': username
+                    }));
+                    textarea.value = ''; // Clear the textarea
+                }
+            });
+        });
+
+        function back() {
+            window.location.href = "{% url 'index' %}";
+        }
+
+        function addMessage(content, sender) {
+            const chatContainer = document.querySelector('.chats');
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = content;
+            
+            if (sender === 'user1') {
+                messageDiv.classList.add('user1');
+            } else {
+                messageDiv.classList.add('user2');
+            }
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="message">
+            <div class="back" onclick="back()"> &larr; </div>
+            <div class="mess-img"> <img class="profile-img" src="{% static 'avatar2.1.png' %}" /></div>
+            <div class="mess-name">{{ other_user }}</div>
+        </div>
+    </nav>
+    <div class="chats" id="chats">
+        <!-- Messages will be appended here -->
+    </div>
+    <div>
+        <form id="chatForm" class="text">
+            <textarea id="chatInput" placeholder="Type a message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

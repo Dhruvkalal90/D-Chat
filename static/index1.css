@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.logo {
+    height: 55px;
+}
+
+.nav-bar {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header1 {
+    border-bottom: 3px solid black;
+    padding: 10px 10px;
+    background-color: rgb(255, 243, 213);
+    position: fixed;
+    width: 100%;
+    display: flex;
+}
+
+.header1 h1 {
+    /* Corrected the class name */
+    font-size: 30px;
+    /* Moved font-size styling to this class */
+}
+
+.menu {
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    padding: 20px;
+}
+
+.menu:hover {
+    border: 0.01px solid rgba(55, 55, 55, 0.463)
+}
+
+.dropdown {
+    top: 78px;
+    position: fixed;
+    right: 0;
+    display: none;
+    box-shadow: 2px 2px 13px gray;
+    z-index: 1;
+}
+
+.menu-con {
+    width: 150px;
+    padding: 5px;
+    display: block;
+    background-color: rgb(255, 243, 213);
+}
+.menu-con-back {
+    width: 150px;
+    padding: 5px;
+    display: block;
+    background-color: rgb(251, 199, 130)
+}
+.menu-con-back:hover {
+    background-color: rgb(255, 168, 54)
+}
+.menu-con:hover {
+    background-color: rgb(199, 184, 145);
+}
+
+.span2 {
+    position: fixed;
+    top: 77px;
+    display: flex;
+    /* Use flexbox */
+    width: 100%;
+    /* Make it take full width */
+    justify-content: space-evenly;
+    /* Distribute items evenly */
+    background-color: rgb(255, 208, 146);
+    /* Added padding for space */
+}
+
+.span2-con {
+    background-color: rgb(252, 191, 112);
+    ;
+    transition: background-color 0.3s;
+    /* Add transition for smooth color change */
+    width: 50%;
+    height: 55px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+/* Hover effect for individual items */
+.span2-con:hover {
+    /*background-color: rgb(189, 143, 84); /* Change background color on hover */
+    border-bottom: 5px solid #ff9200;
+    height: 50px;
+}
+
+.message {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    background-color: rgb(255, 243, 213);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.message:hover {
+    background-color: rgb(255, 250, 237);
+}
+
+.profile-img {
+    border: 0.01px solid black;
+    border-radius: 50%;
+    height: 60px;
+}
+
+.mess-image {
+    width: 30px;
+}
+
+.mess-count {
+    border-radius: 50%;
+    background-color: rgb(255, 145, 0);
+    padding: 10px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.mess-name {
+    font-size: 20px;
+    width: 80%;
+}
